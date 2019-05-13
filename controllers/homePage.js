@@ -13,5 +13,4 @@ module.exports = async (req, res) => {
         posts,
         categories
     });
-    //console.log(categories);
 }

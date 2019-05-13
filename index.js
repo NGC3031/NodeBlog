@@ -87,10 +87,6 @@ app.get("/auth/register", redirectIfAuthenticated, createUserController);
 app.post("/users/register", redirectIfAuthenticated, storeUserController);
 app.get("/auth/logout", logoutController);
 
-//app.get('/', function (req, res) {
-//  res.sendFile(path.join(__dirname + '/ckeditor/samples/index.html'));
-//});
-
 app.get('/about', (req, res) => {
     res.render('about');
 });

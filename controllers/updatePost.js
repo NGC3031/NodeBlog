@@ -1,10 +1,8 @@
 const path = require('path')
 const Post = require('../database/models/Post')
 
-console.log('update log');
 module.exports = async (req, res) => {
     if (req.session.userId) {
-        console.log('ggggg' + req.params.id + ' ' + req.body.title);
         // now do the update
         const {
             image
@@ -39,7 +37,6 @@ module.exports = async (req, res) => {
             if (err) {
                 console.log(query + "Something wrong when updating data!");
             }
-            console.log('QQ ' + req.body.image);
         })
 
         res.redirect('/');
