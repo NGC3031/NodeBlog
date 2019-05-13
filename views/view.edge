@@ -1,0 +1,83 @@
+@layout('layouts.app')
+ 
+@section('content')
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/img/The-Promise-of-AI.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>UVW.io</h1>
+          <span class="subheading">Scott Douglass online - older posts</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9 col-md-10 mx-auto">
+      @each(post in posts)
+      <div class="post-preview">
+          <div class="d-flex flex-row">
+              <div><a href="/post/{{ post._id }}">
+                  <img src="/posts/${post.image}" width="250"/></a>
+              </div>
+              <div class="sub-heading" style="padding:0px 10px 10px 10px;"><a href="/post/{{ post._id }}">
+                <h2 class="post-title">{{ post.title }}</h2></a> 
+                <div style ="color:gray; font-family: 'Roboto', sans-serif;font-size:0.7em;">
+                    <b>{{ post.category }}</b> Posted by {{ post.username }}
+                  on {{ post.createdAt.toDateString() }}
+                </div>
+                  <div class="post-meta" style ="font-family: 'Roboto', sans-serif;">{{ post.description }}<br/></div>
+              </div>
+          </div>
+      </div>
+        @if(auth)
+        <a href="/posts/edit/{{ post._id }}">Edit</a>
+        @endif
+        <hr>
+      @endeach
+      <!-- Pager -->
+      
+      <div class="clearfix">
+          <nav aria-label="Page navigation example float-right">
+              <ul class="pagination float-right">
+                <li class="page-item" id="p1"><a class="page-link" href="javascript: history.go(-1)">Previous</a></li>
+                <li class="page-item" id="pp1"><a class="page-link" href="/view/{{pagePrevious}}">{{pagePrevious}}</a></li>
+                <li class="page-item active"><a class="page-link" href="/view/{{page}}">{{page}}</a></li>
+                <li class="page-item"><a class="page-link" href="/view/{{pageNext}}">{{pageNext}}</a></li>
+                <li class="page-item"><a class="page-link" href="/view/{{pageNext2}}">{{pageNext2}}</a></li>
+                <li class="page-item"><a class="page-link" href="javascript: history.go(1)">Next</a></li>
+              </ul>
+            </nav>
+          </div>
+    </div>
+    <div class="col-lg-3 col-md-2 mx-auto">
+        <div class="sub-heading">
+            <div class="sub-heading">  
+                  <div class="sub-heading">
+                 @include('post-margin')
+              </div><br />
+        </div><br />
+    </div>
+  </div>
+</div>
+ 
+<hr>
+<script type='text/javascript'>
+  (function() {
+    if ({{page}} > 1 ) {
+      document.getElementById("p1").style.visibility = "visible";
+      document.getElementById("pp1").style.visibility = "visible";
+    }
+    else {
+      document.getElementById("p1").style.visibility = "hidden";
+      document.getElementById("pp1").style.visibility = "hidden";
+    } 
+  })();
+  </script>
+@endsection

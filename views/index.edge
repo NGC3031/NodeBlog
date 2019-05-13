@@ -1,0 +1,82 @@
+@layout('layouts.app')
+ 
+@section('content')
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('img/The-Promise-of-AI.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>UVW.io</h1>
+          <span class="subheading">Scott Douglass online</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9 col-md-10 mx-auto">
+      @each(post in posts)
+        <div class="post-preview">
+            <div class="d-flex flex-row">
+                <div><a href="/post/{{ post._id }}">
+                    <img src="/posts/${post.image}" width="250"/></a>
+                </div>
+                <div class="sub-heading" style="padding:0px 10px 10px 10px;"><a href="/post/{{ post._id }}">
+                  <h2 class="post-title">{{ post.title }}</h2></a> 
+                  <div style ="color:gray; font-family: 'Roboto', sans-serif;font-size:0.7em;">
+                      <b>{{ post.category }}</b> Posted by {{ post.username }}
+                    on {{ post.createdAt.toDateString() }}
+                  </div>
+                    <div class="post-meta" style ="font-family: 'Roboto', sans-serif;">{{ post.description }}<br/></div>
+                </div>
+            </div>
+        </div>
+        @if(auth)
+        <a href="/posts/edit/{{ post._id }}">Edit</a>
+        @endif
+        <hr>
+      @endeach
+      <!-- Pager -->
+      <div class="clearfix">
+        <a class="btn btn-primary float-right" href="/view/1">Older Posts &rarr;</a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-2 mx-auto">
+        <div class="sub-heading">
+          <b>Welcome</b> to my little corner of the internet.   
+        <br/><br/>
+        <h4>Categories</h4>
+        @each(post in posts)
+        <a href="/view/1?category={{post.category}}">{{ post.category }}</a><br/>
+        @endeach
+        <br/>
+          <b>What's new</b><br/>
+          - Site rebuild<br/>
+          - Adonis templates<br/>
+          - Edit Post<br/>
+          - Login Auth<br/><br/>
+          <b>Coming Soon</b><br/>
+          - Paging<br/>
+          - Password reset<br/>
+          - Comments<br/><br/>
+          <b>What I use</b>
+          <img src="/img/nodejs-new-pantone-black.png" width="180"/>
+          <img src="/img/express.jpeg" width="200"/>
+          <img src="/img/MongoDB.png" width="200"/>
+          <img src="/img/bootstrap-logo.png" width="180"/>
+          <img src="/img/AdonisJSLogo.png" width="150"/><br/><br/>
+          <img src="/img/debian.png" width="200"/><br/><br/>
+          <img src="/img/mj-logo.svg" width="200"/><br/><br/>
+          <img src="/img/websocketlogo-medium.png" width="200"/><br/><br/>
+        <br/><br/> 
+        </div><br />
+    </div>
+  </div>
+</div>
+<hr>
+@endsection

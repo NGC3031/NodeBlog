@@ -1,0 +1,82 @@
+@layout('layouts/editor')
+ 
+@section('content')
+<!-- Page Header -->
+<header class="masthead">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="page-heading">
+          <h1>Create New Posts</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <form action="/posts/store" method="POST" encType="multipart/form-data">
+      <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Username" class="form-control">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Title" class="form-control">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Category</label>
+            <input type="text" name="category" placeholder="Category" class="form-control">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Description</label>
+            <input type="text" name="description" placeholder="Description" class="form-control">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Content</label>
+            <textarea name="content" id="editor1" placeholder="Content ..." cols="30" rows="10" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Tags</label>
+            <input type="text" name="tags" placeholder="Tags" class="form-control">
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <input type="file" name="image" class="form-control-file">
+        </div>
+        <div class="form-group my-4 text-center">
+          <button class="btn btn-primary">Create Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  //CKEDITOR.replace( 'editor1' );
+  CKEDITOR.replace('editor1', {
+    extraPlugins: 'mathjax', 
+    extraPlugins: 'codesnippet',
+    mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML',
+    height: 420,
+    codeSnippet_theme: 'obsidian'
+  });
+
+  if (CKEDITOR.env.ie && CKEDITOR.env.version == 8) {
+    document.getElementById('ie8-warning').className = 'tip alert';
+  }
+</script>
+@endsection
