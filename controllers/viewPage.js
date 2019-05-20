@@ -7,6 +7,7 @@ module.exports = async (req, res) => {
     const pageNext = parseInt(page) + 1;
     const pageNext2 = parseInt(page) + 2;
     const pagePrevious = parseInt(page) - 1;
+    const categories = await Post.distinct('category');
     if (typeof (cat) != 'undefined') {
         posts = await Post.find({
             category: cat
@@ -20,6 +21,7 @@ module.exports = async (req, res) => {
     }
     res.render("view", {
         posts,
+        categories,
         page,
         pageNext,
         pageNext2,
