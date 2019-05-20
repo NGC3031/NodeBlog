@@ -5,9 +5,7 @@ module.exports = async (req, res) => {
         createdAt: -1
     }).limit(10);
 
-    const categories = await Post.find({
-        category: "*"
-    }).sort({}).limit(20);
+    const categories = await Post.distinct('category').sort();
 
     res.render("index", {
         posts,

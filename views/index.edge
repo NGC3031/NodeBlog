@@ -51,8 +51,8 @@
           <b>Welcome</b> to my little corner of the internet.   
         <br/><br/>
         <h4>Categories</h4>
-        @each(post in posts)
-        <a href="/view/1?category={{post.category}}">{{ post.category }}</a><br/>
+        @each(category in categories)
+        <a href="/view/1?category={{post.category}}">{{ category }}</a><br/>
         @endeach
         <br/>
           <b>What's new</b><br/>
